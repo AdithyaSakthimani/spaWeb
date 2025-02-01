@@ -32,7 +32,7 @@ function Footer() {
             <p>It is your sanctuary for beauty and wellness. We provide premium services to help you look and feel your best.</p>
             <div className="social-icons">
               <a href="https://www.instagram.com/milikotiann/" className="social-icon" target='_blank' ><Instagram size={20} /></a>
-              <a href="" className="social-icon"><Facebook size={20} /></a>
+              <a href="https://www.facebook.com/share/12ECnd7DoHa/?mibextid=wwXIfr" className="social-icon" target='_blank'><Facebook size={20} /></a>
               <a href="https://www.linkedin.com/in/mili-kotian-52a8701b4/?originalSubdomain=in" className="social-icon"><Linkedin size={20} /></a>
             </div>
           </div>
