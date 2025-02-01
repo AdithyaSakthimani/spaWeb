@@ -1,0 +1,127 @@
+.about-me-section {
+    background-color: #121212;
+    color: #e0e0e0;
+    padding: 40px 20px;
+    font-family: "Arial", sans-serif;
+  }
+  .section-quote{
+    text-align: center;
+    padding: 2rem 2rem 0 2rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about-me-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+  
+  .about-me-image img {
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .about-me-content {
+    max-width: 700px;
+  }
+  
+  .about-me-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #e40bf4, #e30ab1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: gradientPulse 4s ease infinite;
+}
+
+@keyframes gradientPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+  
+  .quote {
+    font-style: italic;
+    margin-bottom: 25px;
+  }
+  
+  .intro {
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .services-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #a855f7;
+  }
+  
+  .services-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .services-list li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  .services-list li::before {
+    content: "•";
+    color: #a855f7;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .closing {
+    margin-top: 20px;
+    line-height: 1.6;
+  }
+  .section-quote {
+    text-align: center;
+    padding: 3rem 2rem;
+    width: 70%;
+    margin: 4rem auto;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    position: relative;
+    background: linear-gradient(135deg,
+      rgba(255, 111, 97, 0.05),
+      rgba(255, 158, 128, 0.05)
+    );
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .section-quote::before,
+  .section-quote::after {
+    content: '"';
+    position: absolute;
+    font-size: 4rem;
+    color: #a855f7;
+  }
+  .about-me-image img:hover {
+    transform: scale(1.02) ;
+  }
+  .section-quote::before {
+    top: 1rem;
+    left: 1rem;
+  }
+  
+  .section-quote::after {
+    bottom: 1rem;
+    right: 1rem;
+  }

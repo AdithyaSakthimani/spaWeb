@@ -1,0 +1,403 @@
+
+  .hero-sectionwithImg{
+    display: flex;
+    justify-content: center;
+  }
+  .floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: pulse 4s infinite;
+  }
+  .therapyman{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 2rem;
+    width: 30%;
+    height: 400px;
+  }
+  .orb-1 {
+    top: 5rem;
+    left: 2.5rem;
+    width: 16rem;
+    height: 16rem;
+    background: rgba(147, 51, 234, 0.1);
+  }
+  
+  .orb-2 {
+    bottom: 5rem;
+    right: 2.5rem;
+    width: 24rem;
+    height: 24rem;
+    background: rgba(59, 130, 246, 0.1);
+    animation-delay: 1s;
+  }
+  
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+  .heal-container{
+    width: 100%;
+    background-color: black;
+  }
+  .brand-name {
+    font-size: 4.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #e40bf4, #e30ab1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  
+  .brand-subtitle {
+    font-size: 2rem;
+    color: #a855f7;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 1.25rem;
+    color: #d1d5db;
+    max-width: 36rem;
+    margin: 0 auto 2rem;
+  }
+  
+  /* Buttons */
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  
+  .primary-btn {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .primary-btn:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .arrow-icon {
+    margin-left: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s;
+  }
+  
+  .primary-btn:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+  
+  .secondary-btn {
+    padding: 1rem 2rem;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Products grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+    padding: 0 2rem 10rem 2rem ;
+  }
+  
+  @media (min-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media all and (max-width:1000px) {
+    .therapyman{
+        display: none;
+    }
+  }
+  /* Product cards */
+  .product-card {
+    position: relative;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    transition: transform 0.3s, background 0.3s;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+  }
+  .product-name{
+    color: white;
+  }
+
+  .product-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+  }
+  .product-info{
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  .product-image {
+    width: 100%;
+    height: 14rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .product-card:hover .product-image img {
+    transform: scale(1.05);
+  }
+  
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .product-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .product-description {
+    font-size: 0.875rem;
+    color: #9ca3af;
+  }
+  
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .star-icon {
+    width: 1rem;
+    height: 1rem;
+    color: #fbbf24;
+    fill: currentColor;
+  }
+  
+  .review-count {
+    font-size: 0.875rem;
+    color: #9ca3af;
+  }
+  
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .product-price {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .add-to-cart {
+    padding: 0.5rem 2rem;
+    background-color: white;
+    color: black;
+    border: none;
+    margin-right: auto;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #f3f4f6;
+  }
+  
+  /* Animations */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .brand-name {
+      font-size: 3rem;
+    }
+    
+    .brand-subtitle {
+      font-size: 1.5rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+      max-width: 20rem;
+    }
+    
+    .primary-btn,
+    .secondary-btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .video-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+.therapyman {
+  /* Existing styles, if any */
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.healing-video {
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 9 / 16;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.video-hed {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+    .video-section {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .healing-video {
+        max-width: 100%;
+    }
+
+    .video-hed {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-hed {
+        font-size: 1rem;
+    }
+}
+.book-service-btn {
+  background-size: 200% auto;
+  animation: shimmer 6s linear infinite;
+}
+.book-service-btn-remove {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  color: white;
+  background-color: #ff4444 !important; 
+}
+
+.book-service-btn-remove:hover {
+  transform: translateY(-2px);
+  background-color: #cc0000 !important;
+  cursor: pointer;
+}
+.book-service-btn {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #e40bf4, #e30ab1);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.book-service-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(228, 11, 244, 0.3);
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}

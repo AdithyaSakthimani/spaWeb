@@ -1,0 +1,257 @@
+.customer-ratings-section {
+  margin-top: 50px;
+  text-align: center;
+  padding: 30px;
+  background-color: #0a0a0a;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-track.animate {
+  animation: slide 15s linear infinite;
+}
+.customer-ratings-section {
+  margin-top: 80px;
+  padding: 60px 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(28, 28, 28, 0.95) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a subtle animated gradient overlay */
+.customer-ratings-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: gradientMove 15s ease infinite;
+}
+
+.customer-ratings-section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.carousel-track {
+  gap: 25px;
+  padding: 20px 0;
+  transition: transform 0.3s ease;
+}
+
+.carousel-track.animate {
+  animation: slide 10s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+.rating-card {
+  min-width: 320px;
+  margin: 15px;
+  padding: 30px;
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.9),
+    rgba(38, 38, 38, 0.9)
+  );
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.rating-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(228, 11, 244, 0.15);
+}
+
+.customer-photo-wrapper {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  padding: 3px;
+  background: linear-gradient(45deg, #e40bf4, #e30ab1);
+  transition: transform 0.3s ease;
+}
+
+.customer-photo-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.customer-photo {
+  border-radius: 50%;
+  border: 3px solid #0a0a0a;
+  transition: filter 0.3s ease;
+}
+
+.rating-stars {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.rating-review {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 20px 0;
+}
+
+.rating-name {
+  font-weight: 600;
+  margin-top: 15px;
+}
+.rating-card {
+  min-width: 300px;
+  margin: 0 10px;
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+/* Modern Gradient 1 */
+.about-section {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(40, 40, 40, 0.95) 100%
+  );
+}
+
+/* Elegant Dark Gradient */
+.about-container {
+  background: linear-gradient(
+    to right,
+    rgba(26, 26, 26, 0.98),
+    rgba(38, 38, 38, 0.98)
+  );
+}
+
+/* Dynamic Gradient */
+.about-content {
+  background: linear-gradient(
+    45deg,
+    rgba(228, 11, 244, 0.05) 0%,
+    rgba(26, 26, 26, 0.98) 50%,
+    rgba(227, 10, 177, 0.05) 100%
+  );
+}
+
+/* Glass Morphism Gradient */
+.about-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.customer-photo-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 15px;
+  border: 3px solid #0070f3;
+}
+
+.customer-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rating-stars {
+  margin-bottom: 15px;
+  color: #0070f3;
+}
+
+.rating-review {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #999;
+}
+
+.rating-name {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.carousel-track {
+  animation: slide 20s linear infinite;
+  width: var(--total-width, 100%);
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--total-width, 100%))); }
+}
+.customer-ratings-section h2 {
+  line-height: 4.5rem;
+}
+@media (max-width: 768px) {
+  .customer-ratings-section {
+    padding: 40px 20px;
+  }
+
+  .customer-ratings-section h2 {
+    font-size: 2.2rem;
+  }
+
+  .rating-card {
+    min-width: 280px;
+    margin: 10px;
+    padding: 20px;
+  }
+
+  .customer-photo-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .rating-review {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rating-card {
+    min-width: 240px;
+  }
+
+  .carousel-track {
+    gap: 15px;
+  }
+}
+.star{
+  font-size: 2rem;
+}
