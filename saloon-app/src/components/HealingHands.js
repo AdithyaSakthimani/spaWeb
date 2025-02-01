@@ -11,18 +11,8 @@ import healingVid1 from './videos/healingVid1.mp4';
 import healingVid2 from './videos/healingVid2.mp4';
 
 const HealingHands = () => {
-  const { selectedHand, setSelectedHand, setBookingsCount } = useContext(NoteContext);
-  const [addedProducts, setAddedProducts] = useState(() => {
-    // Initialize addedProducts from localStorage if it exists
-    const savedProducts = localStorage.getItem('addedProducts');
-    return savedProducts ? JSON.parse(savedProducts) : {};
-  });
+  const { selectedHand, setSelectedHand, setBookingsCount , addedProducts, setAddedProducts } = useContext(NoteContext);
   const Navigate = useNavigate();
-
-  // Save addedProducts to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('addedProducts', JSON.stringify(addedProducts));
-  }, [addedProducts]);
 
   const products = [
     {

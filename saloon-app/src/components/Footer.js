@@ -7,15 +7,20 @@ import {
 import { Link } from 'react-router-dom';
 
 function Footer() {
-  const [isSubscribed, setIsSubscribed] = useState(false); // State to track subscription status
-  const [email, setEmail] = useState(''); // State to store the email input
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [email, setEmail] = useState('');
 
   const handleSubscribe = (e) => {
-    e.preventDefault(); // Prevent form submission
-    if (email) { // Check if email is not empty
-      setIsSubscribed(true); // Set subscription status to true
-      setEmail(''); // Clear the email input
+    e.preventDefault();
+    if (email) {
+      setIsSubscribed(true);
+      setEmail('');
     }
+  };
+
+  // Function for smooth scrolling to top
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -35,10 +40,10 @@ function Footer() {
           <div className="footer-section">
             <h4>Quick Links</h4>
             <ul className="footer-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About Me</Link></li>
-              <li><Link to="/about">Healing Hands</Link></li>
-              <li><Link to="/book">Cart</Link></li>
+              <li><Link to="/" onClick={handleLinkClick}>Home</Link></li>
+              <li><Link to="/about" onClick={handleLinkClick}>About Me</Link></li>
+              <li><Link to="/healing" onClick={handleLinkClick}>Healing Hands</Link></li>
+              <li><Link to="/book" onClick={handleLinkClick}>Cart</Link></li>
             </ul>
           </div>
 
@@ -67,7 +72,7 @@ function Footer() {
             <h4>Newsletter</h4>
             <p>Subscribe to our newsletter for updates and special offers.</p>
             {isSubscribed ? (
-              <p className="subscribed-message">Thank you for subscribing!</p> // Display subscribed message
+              <p className="subscribed-message">Thank you for subscribing!</p>
             ) : (
               <form className="newsletter-form" onSubmit={handleSubscribe}>
                 <input
@@ -75,7 +80,7 @@ function Footer() {
                   placeholder="Enter your email"
                   className="newsletter-input"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)} // Update email state
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 <button type="submit" className="newsletter-button">Subscribe</button>

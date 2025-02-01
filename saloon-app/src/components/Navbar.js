@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
   const CartCounter = ({ count }) => {
     const [animate, setAnimate] = useState(false);
-  
+
     useEffect(() => {
       if (count > 0) {
         setAnimate(true);
@@ -26,7 +26,7 @@ const Navbar = () => {
         return () => clearTimeout(timer);
       }
     }, [count]);
-  
+
     return (
       <div className="cart-wrapper">
         <ShoppingCart className="cart-icon" size={20} />
@@ -38,40 +38,43 @@ const Navbar = () => {
       </div>
     );
   };
+  
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const { isHeroVisible } = useContext(NoteContext);
   const [showRecommendations, setShowRecommendations] = useState(false);
-  const {bookingsCount} = useContext(NoteContext);
+  const { bookingsCount } = useContext(NoteContext);
   const navigate = useNavigate();
-  const{servicesRef,setActiveCategory} = useContext(NoteContext) ; 
+  const { servicesRef, setActiveCategory } = useContext(NoteContext);
   const allServices = serviceCategories.flatMap(category => category.services);
 
   const filteredServices = searchQuery ? allServices.filter(service => service.toLowerCase().includes(searchQuery.toLowerCase())) : [];
+
   const getCategoryForService = (serviceName) => {
     return serviceCategories.find(category =>
-      category.services.some(service => 
+      category.services.some(service =>
         service.toLowerCase() === serviceName.toLowerCase()
       )
     );
   };
+
   const handleSearch = (event, selectedService = null) => {
     if (event && typeof event.preventDefault === 'function') {
       event.preventDefault();
     }
 
     const nearestMatch = !selectedService && filteredServices.length > 0 ? filteredServices[0] : null;
-    const serviceToSearch = selectedService || nearestMatch || searchQuery; 
-    
+    const serviceToSearch = selectedService || nearestMatch || searchQuery;
+
     if (serviceToSearch) {
       setSearchTerm(serviceToSearch);
       const category = getCategoryForService(serviceToSearch);
       setActiveCategory(category ? category.name : null);
-      
+
       navigate('/');
       setShowRecommendations(false);
-      
+
       setTimeout(() => {
         if (servicesRef.current) {
           servicesRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -79,20 +82,26 @@ const Navbar = () => {
       }, 300);
     }
   };
-  
+
   const handleRecommendationClick = (selectedService) => {
     handleSearch(null, selectedService);
     setSearchQuery('');
   };
-  useEffect(()=>{
-    if(searchQuery.length>0){
+
+  useEffect(() => {
+    if (searchQuery.length > 0) {
       setShowRecommendations(filteredServices.length > 0);
     }
-  },[searchQuery])
+  }, [searchQuery]);
+
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsDropdownOpen(false);
+  };
 
   return (
     <nav className="navbar">
-      <Link to='/' className='my-lnk'>
+      <Link to="/" className="my-lnk" onClick={handleLinkClick}>
         <div className="logo-container">
           <img src={logo} alt="Milli Hair Saloon Logo" className="logo" />
           <span className="salon-name">Milli Kotian</span>
@@ -104,10 +113,10 @@ const Navbar = () => {
       </div>
 
       <div className={`nav-links ${isDropdownOpen ? 'dropdown-open' : ''}`}>
-        <Link to="/" onClick={() => setIsDropdownOpen(false)}>Home</Link>
-        <Link to="/about" onClick={() => setIsDropdownOpen(false)}>About Me</Link>
-        <Link to="/healing" onClick={() => setIsDropdownOpen(false)}>Healing Hands</Link>
-        <Link to="/book" className="cart-link" onClick={() => setIsDropdownOpen(false)}>
+        <Link to="/" onClick={handleLinkClick}>Home</Link>
+        <Link to="/about" onClick={handleLinkClick}>About Me</Link>
+        <Link to="/healing" onClick={handleLinkClick}>Healing Hands</Link>
+        <Link to="/book" className="cart-link" onClick={handleLinkClick}>
           <CartCounter count={bookingsCount} />
           <span className="cart-text">Cart</span>
         </Link>
@@ -121,10 +130,10 @@ const Navbar = () => {
               className="milli-search-input"
             />
             <button type="submit" className="milli-search-button">
-              <Search size={18} color='white' />
+              <Search size={18} color="white" />
             </button>
           </form>
-          {(searchQuery.length>0 && showRecommendations && !isHeroVisible) && (
+          {(searchQuery.length > 0 && showRecommendations && !isHeroVisible) && (
             <ul className="nav-search-recommendations">
               {filteredServices.map(service => (
                 <li key={service} onClick={() => handleRecommendationClick(service)}>

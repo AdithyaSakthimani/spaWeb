@@ -84,7 +84,7 @@ ${data.message ? `*Special Requests:*\n${data.message}` : ''}
             <div className="form-group-service">
               <label>
                 <ClipboardPen className="icon" />
-                Add Services
+                Add Spa Services
               </label>
               <div className="select-container">
                 <select onChange={handleServiceAdd} defaultValue="">
@@ -100,7 +100,7 @@ ${data.message ? `*Special Requests:*\n${data.message}` : ''}
 
             {selectedServices.length > 0 && (
               <div className="form-group">
-                <h3>Selected Services</h3>
+                <h3>Selected Spa Services</h3>
                 <div className="selected-services">
                   {selectedServices.map((service, ind) => (
                     <div key={ind} className="service-item">

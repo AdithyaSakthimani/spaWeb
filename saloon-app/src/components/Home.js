@@ -22,7 +22,6 @@ import Contact from './Contact';
 import MapContainer from './MapCont';
 import NoteContext from './NoteContext';
 const serviceDetails = {
-  // Facial Treatments
   'Skin analysis': 'Professional evaluation of your skin type, concerns, and conditions using advanced diagnostic tools. Includes personalized skincare recommendations and treatment planning.',
   'Deep cleansing treatments': 'Thorough cleansing procedure that removes impurities, unclogs pores, and eliminates blackheads. Includes steam treatment, gentle extraction, and soothing mask.',
   'Anti Ageing': 'Comprehensive anti-aging treatment using advanced serums and techniques to reduce fine lines and wrinkles. Includes collagen-boosting therapy and LED light treatment.',
@@ -130,12 +129,9 @@ const serviceCategories = [
     name: 'Accesories Rental',
     image: bridalImg,
     services: [
-      'Bridal Make Up',
-      'Photo Shoots',
-      'Red Carpet Look',
-      'Glamourous Make Up',
-      'Nail art',
-      'Acrylic and Gel Nails extenstions'
+      'Bridal Jewellery',
+      'Hair Extensions Long/Short',
+      'Hair Accesories'
     ]
   }
 ];
@@ -145,27 +141,10 @@ const searches = [
 ]
 const Home = () => {
   
-  const [addedServices, setAddedServices] = useState(() => {
-    const savedServices = localStorage.getItem('addedServices');
-    return savedServices ? JSON.parse(savedServices) : {};
-  });
-
-  useEffect(() => {
-    localStorage.setItem('addedServices', JSON.stringify(addedServices));
-  }, [addedServices]);
+  const {addedServices, setAddedServices , selectedServiceDetails , setSelectedServiceDetails} = useContext(NoteContext);
   const navigate = useNavigate();
   const{bookingsCount,setBookingsCount , setSelectedServices,handleServiceRemove } = useContext(NoteContext)
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedServiceDetails, setSelectedServiceDetails] = useState(()=>{
-    const saved = localStorage.getItem('selectedService');
-    return saved ? JSON.parse(saved) : {
-      name: '',
-    description: ''
-    };
-  });
-  useEffect(() => {
-      localStorage.setItem('selectedService', JSON.stringify(selectedServiceDetails));
-    }, [selectedServiceDetails]);
   const [showRecommendations, setShowRecommendations] = useState(false);
   const {servicesRef,activeCategory, setActiveCategory} = useContext(NoteContext);
   const heroRef = useRef(null);
@@ -352,7 +331,6 @@ const Home = () => {
   }, [])
   const handleAddRemoveService = (serviceName) => {
     if (addedServices[serviceName]) {
-      // Remove service
       setAddedServices((prev) => {
         const newAddedServices = { ...prev };
         delete newAddedServices[serviceName];
@@ -363,7 +341,6 @@ const Home = () => {
         prevServices.filter(service => service !== serviceName)
       );
     } else {
-      // Add service
       setAddedServices((prev) => ({
         ...prev,
         [serviceName]: true,
