@@ -17,6 +17,7 @@ import {
   Search, MapPin, Phone, Mail,
   Instagram, Facebook, Linkedin
 } from 'lucide-react';
+import SubscriptionPopup from './SubscriptionPopup';
 import CustomerRating from './CustomerRating';
 import Contact from './Contact';
 import MapContainer from './MapCont';
@@ -145,6 +146,20 @@ const Home = () => {
   const navigate = useNavigate();
   const{bookingsCount,setBookingsCount , setSelectedServices,handleServiceRemove } = useContext(NoteContext)
   const [searchTerm, setSearchTerm] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    // Show the popup after 5 seconds
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
   const [showRecommendations, setShowRecommendations] = useState(false);
   const {servicesRef,activeCategory, setActiveCategory} = useContext(NoteContext);
   const heroRef = useRef(null);
@@ -351,6 +366,7 @@ const Home = () => {
   };
   return (
     <div className="home-page">
+       {showPopup && <SubscriptionPopup onClose={handleClosePopup} />}
        <div className="hero-section hidden" ref={heroRef}>
     {heroImages.map((img, index) => (
       <div
