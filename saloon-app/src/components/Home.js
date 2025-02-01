@@ -176,6 +176,7 @@ const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [index, setIndex] = useState(0);
   const serviceDetailsRef = useRef(null);
+  const [showServices, setShowServices] = useState(false);
   const allServices = serviceCategories.reduce((acc, category) => {
     return [...acc, ...category.services];
   }, []);
@@ -278,7 +279,44 @@ const Home = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
+  const handleCategoryInteraction = (catIndex, action) => {
+    if (action === 'enter') {
+      if (!isTransitioning) {
+        setIsTransitioning(true);
+        setIndex(catIndex);
+        
+        // Clear any existing timeouts
+        if (window.transitionTimeout) {
+          clearTimeout(window.transitionTimeout);
+        }
+        
+        // Set new timeout for showing services
+        window.transitionTimeout = setTimeout(() => {
+          setIsImageClicked(true);
+          setShowServices(true);
+          setIsTransitioning(false);
+        }, 300);
+      }
+    } else if (action === 'leave') {
+      // Clear timeout if mouse leaves during transition
+      if (window.transitionTimeout) {
+        clearTimeout(window.transitionTimeout);
+      }
+      setIsTransitioning(false);
+      setIsImageClicked(false);
+      setShowServices(false);
+    }
+    
+  };
+  
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (window.transitionTimeout) {
+        clearTimeout(window.transitionTimeout);
+      }
+    };
+  }, []);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -412,38 +450,41 @@ const Home = () => {
                 <div key={catIndex} className="category-card">
                   {!isImageClicked || catIndex !== index ? (
                     <div
-                      className="category-image"
+                      className={`category-image ${isTransitioning && catIndex === index ? 'transitioning' : ''}`}
                       style={{ backgroundImage: `url(${category.image})` }}
-                      onMouseEnter={() => {
-                        setIsImageClicked(true);
-                        setIndex(catIndex);
+                      onMouseEnter={() => handleCategoryInteraction(catIndex, 'enter')}
+                      onMouseLeave={() => handleCategoryInteraction(catIndex, 'leave')}
+                      onTouchStart={(e) => {
+                        e.preventDefault();
+                        handleCategoryInteraction(catIndex, 'enter');
                       }}
-                      onMouseLeave={() => setIsImageClicked(false)}
-                      onClick={() => {
-                        setIsImageClicked(true);
-                        setIndex(catIndex);
-                      }}
+                      onTouchEnd={() => handleCategoryInteraction(catIndex, 'leave')}
+                      onClick={() => handleCategoryInteraction(catIndex, 'enter')}
                     >
                       <h3>{category.name}</h3>
                     </div>
                   ) : ''}
                   {isImageClicked && catIndex === index ? (
-                    <div
-                      className={`category-services ${isImageClicked ? 'show' : ''}`}
-                      style={{ backgroundImage: `url(${category.image})` }}
-                      onMouseLeave={() => setIsImageClicked(false)}
-                    >
-                      {category.services.map((service, serviceIndex) => (
-                        <div 
-                          key={serviceIndex} 
-                          className="service-card"
-                          onClick={() => handleServiceClick(service)}
-                        >
-                          {service}
-                        </div>
-                      ))}
-                    </div>
-                  ) : ''}
+  <div
+    className={`category-services ${isImageClicked ? 'show' : ''}`}
+    style={{ backgroundImage: `url(${category.image})` }}
+    onMouseLeave={() => setIsImageClicked(false)}
+  >
+    {category.services.map((service, serviceIndex) => (
+      <div
+        key={serviceIndex}
+        className="service-card"
+        onClick={(e) => {
+          e.stopPropagation(); 
+          e.preventDefault();
+          handleServiceClick(service);
+        }}
+      >
+        {service}
+      </div>
+    ))}
+  </div>
+) : ''}
                 </div>
               )
             ))}
