@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import heroImg from './images/hero-img-final.png';
+import heroImg from './images/hero-img-final.jpg';
 import './Home.css';
 import faceArt from './images/openart-image_WtMVDkpd_1737812086149_raw.jpg'
 import hairService from './images/woman-hairdresser-salon.jpg'
