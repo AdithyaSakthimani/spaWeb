@@ -252,7 +252,16 @@ ${data.message ? `*Special Requests:*\n${data.message}` : ''}
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={selectedServices.length === 0}
+              disabled={
+                !(
+                  (selectedServices.length !== 0 || selectedHand.length !== 0) &&
+                  formData.phone !== '' &&
+                  formData.email !== '' &&
+                  formData.name !== '' &&
+                  formData.time &&
+                  formData.date
+                )
+              }
               className="submit-button"
             >
               {selectedServices.length === 0 ? "Please Select Services" : "Book Appointment"}

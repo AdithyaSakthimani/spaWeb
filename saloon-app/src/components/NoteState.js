@@ -15,6 +15,12 @@ const NoteState = (props) => {
   const productName = [
     'None','Lavender Bath Salts' , 'Aromatherapy Candles' , 'Healing Mineral Soak'
   ]
+  const[formFilled,setFormFilled] = useState(()=>{
+    return JSON.parse(localStorage.getItem('formFilled')) || false;
+  })
+  useEffect(()=>{
+    localStorage.setItem('formFilled',JSON.stringify(formFilled));
+  },[formFilled])
    const [addedServices, setAddedServices] = useState(() => {
       const savedServices = localStorage.getItem('addedServices');
       return savedServices ? JSON.parse(savedServices) : {};
@@ -171,7 +177,8 @@ const NoteState = (props) => {
     }
 };
   const handleServiceRemove = (index) => {
-    const serviceName = services[index] ; 
+    const serviceName = selectedServices[index];
+    console.log(serviceName)
     if (addedServices[serviceName]) {
       setAddedServices((prev) => {
         const newAddedServices = { ...prev };
@@ -199,7 +206,7 @@ const NoteState = (props) => {
   }, [bookingsCount]);
 
   return (
-    <NoteContext.Provider value={{ isNavOpen,isHeroVisible,setIsHeroVisible, handleNavToggle,servicesRef , activeCategory,setActiveCategory , selectedServices, setSelectedServices,handleServiceAdd,handleServiceRemove,services , bookingsCount,setBookingsCount , productName , selectedHand,setSelectedHand , handleHandAdd  , handleHandRemove ,addedServices, setAddedServices , selectedServiceDetails, setSelectedServiceDetails , addedProducts, setAddedProducts} }>
+    <NoteContext.Provider value={{ isNavOpen,isHeroVisible,setIsHeroVisible, handleNavToggle,servicesRef , activeCategory,setActiveCategory , selectedServices, setSelectedServices,handleServiceAdd,handleServiceRemove,services , bookingsCount,setBookingsCount , productName , selectedHand,setSelectedHand , handleHandAdd  , handleHandRemove ,addedServices, setAddedServices , selectedServiceDetails, setSelectedServiceDetails , addedProducts, setAddedProducts , formFilled , setFormFilled} }>
       {props.children}
     </NoteContext.Provider>
   );

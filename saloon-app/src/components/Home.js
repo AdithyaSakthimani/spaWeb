@@ -61,7 +61,10 @@ const serviceDetails = {
   'Bridal Make Up': 'Complete bridal makeup service using premium products. Includes trial session and day-of touch-ups.',
   'Photo Shoots': 'Camera-ready makeup application perfect for photography. Includes lighting test and touch-ups.',
   'Red Carpet Look': 'Glamorous makeup application for special events. Includes consultation and long-wearing products.',
-  'Glamourous Make Up': 'Bold and dramatic makeup looks for special occasions. Includes false lashes and highlighting techniques.'
+  'Glamourous Make Up': 'Bold and dramatic makeup looks for special occasions. Includes false lashes and highlighting techniques.',
+  'Bridal Jewellery': 'Elegant bridal jewellery pieces that complement your wedding look. Includes options for necklaces, earrings, and bracelets.',
+  'Hair Extensions Long/Short': 'High-quality hair extensions available in various lengths to add volume and length. Professional application included.',
+  'Hair Accesories': 'Wide range of hair accessories including clips, headbands, and scarves to complete your look.'
 };
 const serviceCategories = [
   {
@@ -142,7 +145,7 @@ const searches = [
 ]
 const Home = () => {
   
-  const {addedServices, setAddedServices , selectedServiceDetails , setSelectedServiceDetails} = useContext(NoteContext);
+  const {addedServices, setAddedServices , selectedServiceDetails , setSelectedServiceDetails,formFilled} = useContext(NoteContext);
   const navigate = useNavigate();
   const{bookingsCount,setBookingsCount , setSelectedServices,handleServiceRemove } = useContext(NoteContext)
   const [searchTerm, setSearchTerm] = useState('');
@@ -366,7 +369,7 @@ const Home = () => {
   };
   return (
     <div className="home-page">
-       {showPopup && <SubscriptionPopup onClose={handleClosePopup} />}
+       {!formFilled && <SubscriptionPopup onClose={handleClosePopup} />}
        <div className="hero-section hidden" ref={heroRef}>
     {heroImages.map((img, index) => (
       <div

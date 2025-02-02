@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './SubscriptionPopup.css'; // Create this CSS file for styling
+import NoteContext from './NoteContext';
 
 const SubscriptionPopup = ({ onClose }) => {
   const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
+  const [subscribed, setSubscribed] = useState(false)
+  const{formFilled , setFormFilled} = useContext(NoteContext)
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add your logic to handle the subscription (e.g., send to backend)
     console.log('Subscribed with email:', email);
     setSubscribed(true);
+    setFormFilled(true);
     setTimeout(() => {
       onClose();
-    }, 2000); // Close the popup after 2 seconds
+    }, 2000); 
   };
 
   return (
@@ -28,7 +29,7 @@ const SubscriptionPopup = ({ onClose }) => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <button type="submit">Subscribe</button>
+          <button type="submit" >Subscribe</button>
         </form>
       ) : (
         <p>Thank you for subscribing!</p>
